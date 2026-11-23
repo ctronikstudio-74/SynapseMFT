@@ -1,4 +1,7 @@
 #pragma once
+// Legacy in-process bus. The supported agentic bus is synapse::bus::AgenticEventBus
+// in include/synapse/bus.hpp. This type keeps the old config enums and is not the
+// control plane described in .claude/specs/agentic-event-bus.
 #include <string>
 #include <vector>
 #include <map>
