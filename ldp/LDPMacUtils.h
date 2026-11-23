@@ -1,0 +1,18 @@
+#pragma once
+#include <sodium.h>
+#include <vector>
+#include <stdexcept>
+
+class LDPMacUtils {
+public:
+    static std::vector<uint8_t> compute_mac(const std::vector<uint8_t>& data, const uint8_t* key) {
+        std::vector<uint8_t> mac(crypto_auth_BYTES);
+        if (crypto_auth(mac.data(), data.data(), data.size(), key) != 0) {
+            throw std::runtime_error("MAC computation failed");
+        }
+        return mac;
+    }
+    static bool verify_mac(const std::vector<uint8_t>& data, const uint8_t* mac, const uint8_t* key) {
+        return crypto_auth_verify(mac, data.data(), data.size(), key) == 0;
+    }
+};

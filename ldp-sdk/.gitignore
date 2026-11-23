@@ -1,0 +1,7 @@
+build/
+*.exe
+*.dll
+*.obj
+*.pdb
+*.ilk
+ldp-bench-result.txt
