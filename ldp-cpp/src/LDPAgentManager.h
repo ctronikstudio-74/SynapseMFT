@@ -8,7 +8,7 @@
 class LDPAgentManager {
 private:
     std::map<std::string, std::unique_ptr<LDPAgentServer>> agents;
-    std::mutex agentsMutex;
+    mutable std::mutex agentsMutex;
     int basePort;
 
 public:

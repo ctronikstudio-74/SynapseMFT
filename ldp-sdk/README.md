@@ -6,7 +6,7 @@ This is the public trial surface. It is not a certified module, and a loopback n
 
 ## Ten minutes
 
-Dependencies are the same ones used by `ldp`: libsodium 1.0.20 MSVC, `mlkem-native`, and `mldsa-native`. On this tree they already live in `../third_party`. The clone commands are in `ldp/pq/README.md`.
+Dependencies are the same ones used by `ldp`: libsodium 1.0.20 MSVC, `mlkem-native`, and `mldsa-native`. On this tree they live in `../vendor`. The commits are in `ldp/pq/README.md`.
 
 From this folder on Windows:
 

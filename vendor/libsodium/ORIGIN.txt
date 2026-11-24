@@ -1,0 +1,4 @@
+libsodium 1.0.20
+
+The headers in include/ and the Windows x64 dynamic library in win-x64/ are an unmodified copy of the libsodium 1.0.20 MSVC build already used by this project.
+libsodium is distributed under the ISC license. Copyright (c) 2013-2024 Frank Denis.

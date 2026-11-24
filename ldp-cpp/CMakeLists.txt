@@ -104,31 +104,20 @@ endif()
 find_package(Threads REQUIRED)
 target_link_libraries(synapse_bus PUBLIC Threads::Threads)
 
-set(SYNAPSE_DEPS "")
-foreach(_cand "${CMAKE_CURRENT_SOURCE_DIR}/../third_party" "${CMAKE_CURRENT_SOURCE_DIR}/../../third_party")
-    if(EXISTS "${_cand}/libsodium-msvc/libsodium/include/sodium.h"
-       AND EXISTS "${_cand}/mlkem-native/mlkem/mlkem_native.c"
-       AND EXISTS "${_cand}/mldsa-native/mldsa/mldsa_native.c")
-        set(SYNAPSE_DEPS "${_cand}")
-        break()
-    endif()
-endforeach()
-if(SYNAPSE_DEPS)
+include("${CMAKE_CURRENT_SOURCE_DIR}/../vendor/SynapseCrypto.cmake")
+if(SYNAPSE_CRYPTO_READY)
     enable_language(C)
-    set(SODIUM_INCLUDE ${SYNAPSE_DEPS}/libsodium-msvc/libsodium/include)
-    set(SODIUM_LIBRARY ${SYNAPSE_DEPS}/libsodium-msvc/libsodium/x64/Release/v143/dynamic/libsodium.lib)
-    set(SODIUM_DLL ${SYNAPSE_DEPS}/libsodium-msvc/libsodium/x64/Release/v143/dynamic/libsodium.dll)
     add_library(synapse_pq STATIC
         ${CMAKE_CURRENT_SOURCE_DIR}/../ldp/pq/mlkem768.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/../ldp/pq/mldsa65.cpp
-        ${SYNAPSE_DEPS}/mlkem-native/mlkem/mlkem_native.c
-        ${SYNAPSE_DEPS}/mldsa-native/mldsa/mldsa_native.c
+        ${MLKEM_NATIVE}/mlkem_native.c
+        ${MLDSA_NATIVE}/mldsa_native.c
     )
     target_include_directories(synapse_pq PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/../ldp/pq
         ${SODIUM_INCLUDE}
-        ${SYNAPSE_DEPS}/mlkem-native/mlkem
-        ${SYNAPSE_DEPS}/mldsa-native/mldsa
+        ${MLKEM_NATIVE}
+        ${MLDSA_NATIVE}
     )
     target_compile_definitions(synapse_pq PRIVATE
         LDP_HAVE_MLKEM
@@ -146,6 +135,14 @@ if(SYNAPSE_DEPS)
         ${SODIUM_INCLUDE}
     )
     target_link_libraries(synapse_bus PUBLIC synapse_pq)
+    target_include_directories(ldp-api-server PRIVATE ${SODIUM_INCLUDE})
+    target_link_libraries(ldp-api-server ${SODIUM_LIBRARY})
+    if(WIN32)
+        target_link_libraries(ldp-api-server advapi32)
+    endif()
+    add_custom_command(TARGET ldp-api-server POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different ${SODIUM_DLL} $<TARGET_FILE_DIR:ldp-api-server>
+        VERBATIM)
 endif()
 
 find_package(OpenSSL QUIET)
@@ -161,7 +158,7 @@ if(MSVC)
     target_compile_definitions(synapse_bus_tests PRIVATE _CRT_SECURE_NO_WARNINGS)
     target_compile_options(synapse_bus_tests PRIVATE /W4)
 endif()
-if(SYNAPSE_DEPS)
+if(SYNAPSE_CRYPTO_READY)
     add_custom_command(TARGET synapse_bus_tests POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_if_different ${SODIUM_DLL} $<TARGET_FILE_DIR:synapse_bus_tests>
         VERBATIM)

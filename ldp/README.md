@@ -56,13 +56,13 @@ Un esempio completo di due sessioni, perdita e identità è `tests/test_ldp1.cpp
 
 ## Build
 
-Dipendenze, tutte fuori da git:
+Dipendenze, nella cartella `vendor/` del repository:
 
-- libsodium 1.0.20, build MSVC dinamica in `third_party/libsodium-msvc` (non definire `SODIUM_STATIC`)
+- libsodium 1.0.20, DLL MSVC x64 (non definire `SODIUM_STATIC`)
 - `mlkem-native` commit `3979073e2137f59640560673de88c9949a2105ef`
 - `mldsa-native` commit `6797c557aabb3574915f2d6bfbb7b973ae988525`
 
-I clone sono in `pq/README.md`. CMake cerca `third_party` in questa cartella e, se non c’è, nella cartella padre.
+I dettagli sono in `pq/README.md`. CMake le legge da `vendor/SynapseCrypto.cmake`.
 
 Su Windows, da questa cartella:
 
@@ -117,7 +117,7 @@ Chi adotta LDP implementa da solo trasporto e chiavi. Collegare Governance, desk
 
 La licenza open source non è ancora nel tree. Va scelta e aggiunta, in un file `LICENSE`, prima del primo tag pubblico. Fino a quel file il codice non è una concessione d’uso. La forma adatta a un componente di protocollo è una licenza permissiva; Apache-2.0 è la candidata, per la concessione di brevetto, e non è ancora applicata.
 
-Le librerie in `third_party/` restano sotto le loro licenze. Non vanno vendute come parte del certificato di questo componente.
+Le librerie in `vendor/` restano sotto le loro licenze. Non vanno vendute come parte del certificato di questo componente.
 
 ## Stato attuale
 

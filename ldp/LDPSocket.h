@@ -16,6 +16,6 @@ public:
     LDPSocket();
     void send_packet(const std::string& ip, int port, const std::vector<uint8_t>& data);
     int receive_packet(std::vector<uint8_t>& buffer, std::string& from_ip, int& from_port);
-    int get_socket() const { return sock; }
+    int get_socket() const;
     ~LDPSocket();
 };

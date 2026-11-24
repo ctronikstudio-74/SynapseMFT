@@ -37,7 +37,7 @@ void LDPSocket::send_packet(const std::string& ip, int port, const std::vector<u
         throw std::runtime_error("Invalid IP address");
     }
     
-    ssize_t sent = sendto(sock, (const char*)data.data(), data.size(), 0, 
+    const int sent = sendto(sock, (const char*)data.data(), static_cast<int>(data.size()), 0, 
                           (struct sockaddr*)&dest, sizeof(dest));
     if (sent < 0) {
         throw std::runtime_error("Send failed");
@@ -48,7 +48,7 @@ int LDPSocket::receive_packet(std::vector<uint8_t>& buffer, std::string& from_ip
     struct sockaddr_in sender;
     socklen_t sender_len = sizeof(sender);
     
-    ssize_t received = recvfrom(sock, (char*)buffer.data(), buffer.size(), 0,
+    const int received = recvfrom(sock, (char*)buffer.data(), static_cast<int>(buffer.size()), 0,
                                 (struct sockaddr*)&sender, &sender_len);
     
     if (received > 0) {

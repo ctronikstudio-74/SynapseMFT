@@ -11,28 +11,10 @@ if(MSVC)
 endif()
 
 set(LDP_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/../ldp)
-set(LDP_DEPS "")
-foreach(_cand
-        "${CMAKE_CURRENT_SOURCE_DIR}/../third_party"
-        "${LDP_ROOT}/third_party"
-        "${CMAKE_CURRENT_SOURCE_DIR}/../../third_party")
-    if(EXISTS "${_cand}/libsodium-msvc/libsodium/include/sodium.h"
-       AND EXISTS "${_cand}/mlkem-native/mlkem/mlkem_native.c"
-       AND EXISTS "${_cand}/mldsa-native/mldsa/mldsa_native.c")
-        set(LDP_DEPS "${_cand}")
-        break()
-    endif()
-endforeach()
-
-if(NOT LDP_DEPS)
-    message(FATAL_ERROR "LDP-1 dependencies not found. See README.md.")
+include("${CMAKE_CURRENT_SOURCE_DIR}/../vendor/SynapseCrypto.cmake")
+if(NOT SYNAPSE_CRYPTO_READY)
+    message(FATAL_ERROR "Crypto libraries not found in vendor/. See vendor/README.md.")
 endif()
-
-set(SODIUM_INCLUDE ${LDP_DEPS}/libsodium-msvc/libsodium/include)
-set(SODIUM_LIBRARY ${LDP_DEPS}/libsodium-msvc/libsodium/x64/Release/v143/dynamic/libsodium.lib)
-set(SODIUM_DLL ${LDP_DEPS}/libsodium-msvc/libsodium/x64/Release/v143/dynamic/libsodium.dll)
-set(MLKEM_NATIVE ${LDP_DEPS}/mlkem-native/mlkem)
-set(MLDSA_NATIVE ${LDP_DEPS}/mldsa-native/mldsa)
 
 enable_language(C)
 add_library(ldp1 STATIC

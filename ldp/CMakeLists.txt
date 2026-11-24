@@ -22,11 +22,18 @@ option(BUILD_EXAMPLES "Build examples" ON)
 # Include directories
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
-# Find dependencies
+# Find dependencies. The in-tree copy is vendor/; third_party/ is only a fallback.
+include("${CMAKE_CURRENT_SOURCE_DIR}/../vendor/SynapseCrypto.cmake")
 find_package(PkgConfig QUIET)
 
 # Find libsodium
-if(PKG_CONFIG_FOUND)
+if(SYNAPSE_CRYPTO_READY)
+    set(LIBSODIUM_FOUND TRUE)
+    set(LIBSODIUM_INCLUDE_DIRS ${SODIUM_INCLUDE})
+    set(LIBSODIUM_LIBRARIES ${SODIUM_LIBRARY})
+endif()
+
+if(NOT LIBSODIUM_FOUND AND PKG_CONFIG_FOUND)
     pkg_check_modules(LIBSODIUM QUIET libsodium)
 endif()
 
@@ -36,7 +43,7 @@ if(NOT LIBSODIUM_FOUND)
         /usr/include
         /usr/local/include
         /opt/homebrew/include
-        ${CMAKE_SOURCE_DIR}/third_party/libsodium/include
+        ${SODIUM_INCLUDE}
     )
     
     find_library(LIBSODIUM_LIBRARY
@@ -45,7 +52,7 @@ if(NOT LIBSODIUM_FOUND)
         /usr/lib
         /usr/local/lib
         /opt/homebrew/lib
-        ${CMAKE_SOURCE_DIR}/third_party/libsodium/lib
+        ${SODIUM_LIBRARY}
     )
     
     if(LIBSODIUM_INCLUDE_DIR AND LIBSODIUM_LIBRARY)
@@ -111,6 +118,7 @@ endif()
 target_include_directories(ldp PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
     $<INSTALL_INTERFACE:include>
+    ${LIBSODIUM_INCLUDE_DIRS}
 )
 
 target_link_libraries(ldp PUBLIC

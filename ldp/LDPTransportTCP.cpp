@@ -46,7 +46,7 @@ int LDPTransportTCP::send_data(const std::vector<uint8_t>& data) {
 }
 
 int LDPTransportTCP::receive_data(std::vector<uint8_t>& buffer) {
-    ssize_t received = ::recv(sock, (char*)buffer.data(), buffer.size(), 0);
+    const int received = ::recv(sock, (char*)buffer.data(), static_cast<int>(buffer.size()), 0);
     if (received > 0) {
         buffer.resize(received);
     }

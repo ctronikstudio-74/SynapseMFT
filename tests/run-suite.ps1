@@ -34,6 +34,19 @@ Invoke-Step "LDP protocol" {
     if (Test-Path $ldp1) { & $ldp1 }
 }
 
+Invoke-Step "Governance" {
+    dotnet test (Join-Path $root "SynapseMFT-Governance\tests\SynapseMFT.Core.Tests\SynapseMFT.Core.Tests.csproj") --nologo
+}
+
+Invoke-Step "Desktop agent" {
+    Push-Location (Join-Path $root "ldp-desktop")
+    try {
+        node --test test/agent.test.js test/governance-client.test.js
+    } finally {
+        Pop-Location
+    }
+}
+
 Write-Host ""
 if ($failed) {
     Write-Host "Suite finished with failures."

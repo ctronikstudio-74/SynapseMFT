@@ -27,26 +27,10 @@ endif()
 
 add_test(NAME ldp_packet_and_congestion COMMAND ldp_unit_tests)
 
-# Standalone repo: dependencies live in ldp/third_party.
-# Inside the SynapseMFT tree they live one level above ldp.
-set(LDP_DEPS "")
-foreach(_cand "${CMAKE_CURRENT_SOURCE_DIR}/../third_party" "${CMAKE_CURRENT_SOURCE_DIR}/../../third_party")
-    if(EXISTS "${_cand}/libsodium-msvc/libsodium/include/sodium.h"
-       AND EXISTS "${_cand}/mlkem-native/mlkem/mlkem_native.c"
-       AND EXISTS "${_cand}/mldsa-native/mldsa/mldsa_native.c")
-        set(LDP_DEPS "${_cand}")
-        break()
-    endif()
-endforeach()
+# Dependencies live in the repository vendor/ tree. third_party/ is only a fallback.
+include("${CMAKE_CURRENT_SOURCE_DIR}/../../vendor/SynapseCrypto.cmake")
 
-set(SODIUM_INCLUDE ${LDP_DEPS}/libsodium-msvc/libsodium/include)
-set(SODIUM_LIBRARY ${LDP_DEPS}/libsodium-msvc/libsodium/x64/Release/v143/dynamic/libsodium.lib)
-set(SODIUM_DLL ${LDP_DEPS}/libsodium-msvc/libsodium/x64/Release/v143/dynamic/libsodium.dll)
-set(MLKEM_NATIVE ${LDP_DEPS}/mlkem-native/mlkem)
-set(MLDSA_NATIVE ${LDP_DEPS}/mldsa-native/mldsa)
-
-if(LDP_DEPS AND EXISTS ${SODIUM_INCLUDE}/sodium.h AND EXISTS ${SODIUM_LIBRARY}
-   AND EXISTS ${MLKEM_NATIVE}/mlkem_native.c AND EXISTS ${MLDSA_NATIVE}/mldsa_native.c)
+if(SYNAPSE_CRYPTO_READY)
     enable_language(C)
     add_library(ldp1 STATIC
         ${LDP_ROOT}/LDP1Session.cpp
