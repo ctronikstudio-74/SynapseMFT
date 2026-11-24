@@ -1,0 +1,25 @@
+{
+  "name": "@ctronik/ldp",
+  "version": "0.2.0",
+  "description": "TypeScript binding of the Synapse Delivery Protocol SDK",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "tsc -p tsconfig.json && node dist/transfer.test.js"
+  },
+  "dependencies": {
+    "koffi": "^2.14.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "typescript": "^5.9.3"
+  }
+}

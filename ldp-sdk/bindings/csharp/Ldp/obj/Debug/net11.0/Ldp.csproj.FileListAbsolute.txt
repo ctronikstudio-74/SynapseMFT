@@ -1,0 +1,13 @@
+d:\CTronik\CTronik Studio\Synapse Projects\SynapseMFT\ldp-sdk\bindings\csharp\Ldp\bin\Debug\net11.0\Ldp.deps.json
+d:\CTronik\CTronik Studio\Synapse Projects\SynapseMFT\ldp-sdk\bindings\csharp\Ldp\bin\Debug\net11.0\Ldp.dll
+d:\CTronik\CTronik Studio\Synapse Projects\SynapseMFT\ldp-sdk\bindings\csharp\Ldp\bin\Debug\net11.0\Ldp.pdb
+d:\CTronik\CTronik Studio\Synapse Projects\SynapseMFT\ldp-sdk\bindings\csharp\Ldp\obj\Debug\net11.0\Ldp.GeneratedMSBuildEditorConfig.editorconfig
+d:\CTronik\CTronik Studio\Synapse Projects\SynapseMFT\ldp-sdk\bindings\csharp\Ldp\obj\Debug\net11.0\Ldp.AssemblyInfoInputs.cache
+d:\CTronik\CTronik Studio\Synapse Projects\SynapseMFT\ldp-sdk\bindings\csharp\Ldp\obj\Debug\net11.0\Ldp.AssemblyInfo.cs
+d:\CTronik\CTronik Studio\Synapse Projects\SynapseMFT\ldp-sdk\bindings\csharp\Ldp\obj\Debug\net11.0\Ldp.csproj.CoreCompileInputs.cache
+d:\CTronik\CTronik Studio\Synapse Projects\SynapseMFT\ldp-sdk\bindings\csharp\Ldp\obj\Debug\net11.0\Ldp.sourcelink.json
+d:\CTronik\CTronik Studio\Synapse Projects\SynapseMFT\ldp-sdk\bindings\csharp\Ldp\obj\Debug\net11.0\Ldp.dll
+d:\CTronik\CTronik Studio\Synapse Projects\SynapseMFT\ldp-sdk\bindings\csharp\Ldp\obj\Debug\net11.0\refint\Ldp.dll
+d:\CTronik\CTronik Studio\Synapse Projects\SynapseMFT\ldp-sdk\bindings\csharp\Ldp\obj\Debug\net11.0\Ldp.pdb
+d:\CTronik\CTronik Studio\Synapse Projects\SynapseMFT\ldp-sdk\bindings\csharp\Ldp\obj\Debug\net11.0\ref\Ldp.dll
+d:\CTronik\CTronik Studio\Synapse Projects\SynapseMFT\ldp-sdk\bindings\csharp\Ldp\obj\Debug\net11.0\Ldp.csproj.Up2Date
