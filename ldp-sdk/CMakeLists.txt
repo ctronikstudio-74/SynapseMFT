@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(ldp_sdk VERSION 0.1.0 LANGUAGES CXX)
+project(ldp_sdk VERSION 0.2.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -76,6 +76,28 @@ endfunction()
 
 ldp_sdk_tool(ldp_try)
 ldp_sdk_tool(ldp_bench)
+
+add_library(ldp_c SHARED src/ldp_c.cpp)
+target_compile_definitions(ldp_c PRIVATE LDP_C_BUILD)
+target_include_directories(ldp_c
+    PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
+    PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src ${SODIUM_INCLUDE}
+)
+target_link_libraries(ldp_c PRIVATE ldp_sdk)
+if(MSVC)
+    target_compile_options(ldp_c PRIVATE /W4 /WX-)
+else()
+    target_compile_options(ldp_c PRIVATE -Wall -Wextra -Wpedantic)
+endif()
+add_custom_command(TARGET ldp_c POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${SODIUM_DLL} $<TARGET_FILE_DIR:ldp_c>
+    VERBATIM)
+
+add_executable(ldp_c_tests tests/test_ldp_c.cpp)
+target_link_libraries(ldp_c_tests PRIVATE ldp_c)
+if(MSVC)
+    target_compile_options(ldp_c_tests PRIVATE /W4 /WX-)
+endif()
 
 # The DevOps commands are ldp-try and ldp-bench. CMake target names cannot contain '-'.
 set_target_properties(ldp_try PROPERTIES OUTPUT_NAME ldp-try)

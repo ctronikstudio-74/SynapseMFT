@@ -1,6 +1,6 @@
 # LDP SDK
 
-SDK 0.1.0 for the Synapse Delivery Protocol, LDP-1. It links the session engine in the sibling `ldp` folder. A developer or a DevOps engineer can compile it, move one mebibyte through the protocol, and publish a benchmark in one sitting.
+SDK 0.2.0 for the Synapse Delivery Protocol, LDP-1. It links the session engine in the sibling `ldp` folder. A developer or a DevOps engineer can compile it, move one mebibyte through the protocol, and publish a benchmark in one sitting.
 
 This is the public trial surface. It is not a certified module, and a loopback number is not a wide-area result.
 
@@ -41,7 +41,7 @@ The tool prints a text report and writes `ldp-bench-result.txt` in the current d
 
 ```text
 # ldp-sdk bench v1
-# sdk 0.1.0
+# sdk 0.2.0
 # protocol LDP-1 Synapse Delivery Protocol
 # columns profile transport payload_bytes chunk_size rekey_every seconds MiB/s match
 ```
@@ -68,7 +68,13 @@ Publish the result file with the SDK version, the CPU, and the OS. The seconds w
 - `udp_listen` and `udp_send` are the two-process tools.
 - `run_public_bench` and `format_public_bench` produce the report above.
 
-`Profile::Classic` is X25519 and XChaCha20-Poly1305. `Profile::HybridPq1` adds ML-KEM-768 and pinned ML-DSA-65 identities. The SDK generates those identities for the in-process calls. The two-process commands in 0.1.0 are classic only.
+`Profile::Classic` is X25519 and XChaCha20-Poly1305. `Profile::HybridPq1` adds ML-KEM-768 and pinned ML-DSA-65 identities. The SDK generates those identities for the in-process calls. The two-process commands `udp_listen` and `udp_send` are classic only: a hybrid session needs identities pinned with `set_identity` before the handshake.
+
+## Languages
+
+`include/ldp/ldp_c.h` is the C ABI, built as `build/ldp_c.dll`. Lua, Python, TypeScript, C# and Java call that library. They expose the session, a pinned ML-DSA identity, an in-process pipe, UDP, the loopback transfer and the public benchmark. The layout and the commands are in `bindings/README.md`.
+
+`build_sdk.bat` also builds `ldp_c.dll` and runs `ldp_c_tests`. That test prints `ldp_c tests passed`.
 
 The algorithms follow FIPS 203 and FIPS 204. This build is not a CMVP-validated module.
 
@@ -86,8 +92,10 @@ A perpetual license exists only for the Governance Suite: three times the annual
 
 | Path | Role |
 | --- | --- |
-| `include/ldp/sdk.hpp` | public API |
-| `src/` | loopback, UDP transport, benchmark |
+| `include/ldp/sdk.hpp` | C++ API |
+| `include/ldp/ldp_c.h` | C ABI used by the other languages |
+| `src/` | loopback, UDP transport, benchmark, C ABI |
+| `bindings/` | Lua, Python, TypeScript, C# and Java |
 | `tools/ldp_try.cpp` | ten-minute command |
 | `tools/ldp_bench.cpp` | public benchmark |
 | `../ldp` | LDP-1 session engine |

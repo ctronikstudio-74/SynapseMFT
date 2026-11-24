@@ -5,3 +5,7 @@ build/
 *.pdb
 *.ilk
 ldp-bench-result.txt
+bindings/java/out/
+bindings/csharp/**/bin/
+bindings/csharp/**/obj/
+bindings/typescript/dist/

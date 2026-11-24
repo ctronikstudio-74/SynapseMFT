@@ -13,7 +13,8 @@ if not defined VSINSTALL (
 )
 call "%VSINSTALL%\VC\Auxiliary\Build\vcvars64.bat" || exit /b 1
 cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release -S "%~dp0." -B "%~dp0build" || exit /b 1
-cmake --build "%~dp0build" --target ldp_try ldp_bench || exit /b 1
+cmake --build "%~dp0build" --target ldp_try ldp_bench ldp_c ldp_c_tests || exit /b 1
 "%~dp0build\ldp-try.exe" || exit /b 1
-echo SDK: %~dp0build\ldp-try.exe and %~dp0build\ldp-bench.exe
+"%~dp0build\ldp_c_tests.exe" || exit /b 1
+echo SDK: %~dp0build\ldp-try.exe, %~dp0build\ldp-bench.exe and %~dp0build\ldp_c.dll
 exit /b 0

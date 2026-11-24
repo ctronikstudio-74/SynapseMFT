@@ -11,7 +11,7 @@
 namespace ldp {
 namespace sdk {
 
-constexpr const char* kSdkVersion = "0.1.0";
+constexpr const char* kSdkVersion = "0.2.0";
 constexpr const char* kProtocol = "LDP-1";
 
 enum class Profile { Classic, HybridPq1 };
