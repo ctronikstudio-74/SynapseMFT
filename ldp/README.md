@@ -101,25 +101,30 @@ La bozza precedente resta nel tree come storia del lavoro. Ha un altro formato d
 
 Questo repository, quando viene pubblicato, è il protocollo e la libreria `ldp1`. L’SDK in `ldp-sdk` è lo stesso perimetro gratuito.
 
-Tre strumenti non sono in questo codice e si comprano con licenza annuale, fattura, dodici mesi anticipati, prezzi IVA esclusa:
+Tre strumenti non sono in questo codice open ma si comprano con licenza, tool pensati per gestire il file trasfer sicuro. Il gateway agentico, inoltre provvedera' alla
+monitorizzazione e logging di legge oltre a strumenti che misurano performance e indici di prestazioni e funzionamento e vari tool e sistemi legati a questi due core open...
 
-| Strumento | Cosa fa | Prezzo pubblico |
+Siamo orgogliosi e ci teniamo che rimangano sempre open source i core dei due software, sia il gateway agentico che il file transfer gestito proprio per la natura critica e dai requisiti di sicurezza e affidabilita' mission critical e real time in termini di performance (REAL TIME effettivo, documentato e misurabile, non LIKE REAL TIME come con linguaggi piu' ad alto livello come Python, Java o Typescript, quindi anche interpretati e quindi impossibili da prevedere in termini di tempi di esecuzione certi oltre che performance sufficenti o soddisfacenti...)
+
+| Strumento | Cosa fara | |
 | --- | --- | --- |
 | SynapseMFT Governance Suite | piano di controllo: approvazione, audit, policy sui nodi.  
 | Virtual Desktop | console visuale per un operatore e gestire nodi e una rete di nodi MFT 
 | Synapse Event Bus | bus cifrato degli eventi di trasferimento e di governance.
 
-La licenza perpetua esiste solo per la Governance Suite: tre volte il canone annuo, poi manutenzione al 22% dal secondo anno. L’ordine parte dal portale C-Tronik, pagina SynapseMFT. Il sito di prodotto descrive le tre voci e rimanda a quell’ordine. Protocollo e SDK non sono una riga di fattura.
+Gli ordini partono dal portale C-Tronik, pagina di prodotto come ad esempio: SynapseMFT. 
+Il sito di prodotto descrivera' le tre voci e rimandera' a un ordine a CTronik. Protocolli o Core del Gateway e relativi SDK saranno disponibili per il download e con i link al repository dei sorgenti.
 
-Chi adotta LDP implementa da solo trasporto e chiavi. Collegare Governance, desktop o event bus è un contratto commerciale, non una clausola di questo componente.
 
 ## Licenza
 
-La licenza open source non è ancora nel tree. Va scelta e aggiunta, in un file `LICENSE`, prima del primo tag pubblico. Fino a quel file il codice non è una concessione d’uso. La forma adatta a un componente di protocollo è una licenza permissiva; Apache-2.0 è la candidata, per la concessione di brevetto, e non è ancora applicata.
+GNU e/o GPL 2.0
 
-Le librerie in `vendor/` restano sotto le loro licenze. Non vanno vendute come parte del certificato di questo componente.
+Le librerie esterne utilizzate in `vendor/` restano sotto le loro licenze. Non vanno vendute come parte del certificato di questo componente.
 
-## Stato attuale
+
+
+## Stato attuale, anomalie e bug 
 
 LDP-1 fa handshake, trasferimento, SACK, ritrasmissione e rekey negoziato. Il profilo ibrido rifiuta una chiave pubblica sbagliata e una firma alterata. Il test che lo dimostra è passato su Windows.
 
