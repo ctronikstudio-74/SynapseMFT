@@ -105,9 +105,9 @@ Tre strumenti non sono in questo codice e si comprano con licenza annuale, fattu
 
 | Strumento | Cosa fa | Prezzo pubblico |
 | --- | --- | --- |
-| SynapseMFT Governance Suite | piano di controllo: approvazione, audit, policy sui nodi | Starter €6.000/anno fino a 10 nodi. Professional €18.000/anno fino a 50 nodi. Enterprise da €36.000/anno su preventivo |
-| Virtual Desktop | console per un operatore nominato | €1.200 a posto all’anno. Dieci posti sono dentro Professional. Si vende solo insieme alla Governance |
-| Synapse Event Bus | bus cifrato degli eventi di trasferimento e di governance | Dentro Professional ed Enterprise. Da solo, o in aggiunta a Starter: €4.800/anno fino a 10 nodi, €9.600/anno fino a 50 |
+| SynapseMFT Governance Suite | piano di controllo: approvazione, audit, policy sui nodi.  
+| Virtual Desktop | console visuale per un operatore e gestire nodi e una rete di nodi MFT 
+| Synapse Event Bus | bus cifrato degli eventi di trasferimento e di governance.
 
 La licenza perpetua esiste solo per la Governance Suite: tre volte il canone annuo, poi manutenzione al 22% dal secondo anno. L’ordine parte dal portale C-Tronik, pagina SynapseMFT. Il sito di prodotto descrive le tre voci e rimanda a quell’ordine. Protocollo e SDK non sono una riga di fattura.
 
