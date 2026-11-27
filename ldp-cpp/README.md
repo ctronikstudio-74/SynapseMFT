@@ -1,4 +1,4 @@
-# LDP Agent Server e bus agentico
+# LDP Agent Server e EventBus agentico
 
 Il piano di controllo per i modelli è la libreria `synapse::bus` in `include/synapse`. Il protocollo aperto LDP sposta i byte; questo bus sposta intenzioni, approvazioni e ricevute. La descrizione e le regole di sviluppo sono in `doc/SYNAPSEMFT_EVENTBUS_AGENTICO.md` e `doc/LDP_CPP_REGOLE_SVILUPPO.md`.
 
@@ -82,8 +82,12 @@ Default: porta 3002
 - File system virtuale in `nodes/node-<id>/`
 - Supporta modalità demo (tutti nodi su stessa macchina)
 
+  
+##########################################################################
 ## Event bus agentico
-
-Il piano di controllo è `synapse::bus::AgenticEventBus`, in `include/synapse/bus.hpp`. Si compila con `build_bus.bat`. La specifica è `.claude/specs/agentic-event-bus/` e il contesto che elenca i file sotto `.claude` è `.claude/steering/contest.md`. Il comportamento e i limiti stanno in `doc/SYNAPSEMFT_EVENTBUS_AGENTICO.md`.
+##########################################################################
+Il piano di controllo è `synapse::bus::AgenticEventBus`, in `include/synapse/bus.hpp`. Si compila con `build_bus.bat`. 
+La specifica è `.claude/specs/agentic-event-bus/` e il contesto che elenca i file sotto `.claude` è `.claude/steering/contest.md`. 
+Il comportamento e i limiti stanno in `doc/SYNAPSEMFT_EVENTBUS_AGENTICO.md`.
 
 
