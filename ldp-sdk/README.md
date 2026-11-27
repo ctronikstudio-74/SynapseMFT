@@ -80,13 +80,10 @@ The algorithms follow FIPS 203 and FIPS 204. This build is not a CMVP-validated 
 
 ## Paid tools, not in this SDK
 
-This SDK and the LDP-1 engine are the open part. Three C-Tronik tools are sold separately, by annual invoice, and are not in this tree:
+This SDK and the LDP-1 engine are the open part. Three C-Tronik tools are sold separately, by invoice, and are not in this tree:
 
-- **SynapseMFT Governance Suite** — approval, audit, and node policy. Starter €6,000 a year (10 nodes). Professional €18,000 a year (50 nodes, four-eyes, event bus, 10 desktop seats). Enterprise from €36,000 a year on a quote.
-- **Virtual Desktop** — one named operator console. €1,200 a seat a year. Ten seats are inside Professional. It is sold only with Governance.
-- **Synapse Event Bus** — encrypted events for transfer and governance. Included in Professional and Enterprise. On its own, or added to Starter: €4,800 a year up to 10 nodes, €9,600 a year up to 50.
-
-A perpetual license exists only for the Governance Suite: three times the annual fee, then maintenance at 22% from the second year. Prices exclude VAT. The order is placed from the C-Tronik portal page for SynapseMFT. The product site describes the three tools and links back to that page. Nothing in `ldp-try` or `ldp-bench` enables those tools.
+- **SynapseMFT Governance Suite** — approval, audit, and node policy.
+The order is placed from the C-Tronik portal page for SynapseMFT. The product site describes the three tools and links back to that page. Nothing in `ldp-try` or `ldp-bench` enables those tools.
 
 ## Layout
 
